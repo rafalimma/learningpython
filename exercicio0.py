@@ -22,34 +22,48 @@ Resultado final:
 Rodrigo Curvêllo: 5.9 m
 '''
 
+import os
 saltos = []
 while True:
     nome = input("Escreva seu nome: ")
-    for dist in range(5):
+    if nome.isdigit():
+        print("Digite um nome válido.")
+        continue
+    for i in range(5):
         salto = input("Digite a distancia do salto: ")
         if salto.isdigit():
             salto = int(salto)
-        saltos.append(salto)
-    else:
-        print("dada")
+            saltos.append(salto)
+        else:
+            saltos.pop
+            continue
 
 #ordem dos saltos:
-    print(f"Primeiro salto: ", {saltos[0]})
-    print(f"O segundo salto: ", {saltos[1]})
-    print(f"O terceiro salto: ", {saltos[2]})
-    print(f"O quarto salto: ", {saltos[3]})
-    print(f"O quinto salto: ", {saltos[4]})
+    if len(saltos) == 5:
+        print(f"Primeiro salto: ", {saltos[0]})
+        print(f"O segundo salto: ", {saltos[1]})
+        print(f"O terceiro salto: ", {saltos[2]})
+        print(f"O quarto salto: ", {saltos[3]})
+        print(f"O quinto salto: ", {saltos[4]})
 
-    maior = max(saltos)
-    menor = min(saltos)
-    print(f"O melhor salto foi: ", {maior})
-    print(f"O pior salto foi: ", {menor})
-#excluindo os extremos
-    saltos.remove(menor)
-    saltos.remove(maior)
-#média sem extremos
-    media = saltos[0] + saltos[1] + saltos[2]
-    mediaf = (media/3)
-    print("Resultado final:")
-    print(f"O nome do atleta é: {nome}, e a média dos saltos é {mediaf}.")
+        maior = max(saltos)
+        menor = min(saltos)
+        print(f"O melhor salto foi: ", {maior})
+        print(f"O pior salto foi: ", {menor})
+        #excluindo os extremos
+        saltos.remove(menor)
+        saltos.remove(maior)
+        #média sem extremos
+        media = saltos[0] + saltos[1] + saltos[2]
+        mediaf = (media/3)
+        print("Resultado final:")
+        print(f"O nome do atleta é: {nome}, e a média dos saltos é {mediaf}.")
+    else:
+        print("Apenas valores numericos serão aceitos")
+    
+    stop = input(f"Press f to clean")
+    if stop == "f":
+        os.system('cls')
+
+
 
