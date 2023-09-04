@@ -11,13 +11,13 @@
 
 def adiciona(tarefa, lista):
     lista.append(tarefa)
-    item = lista.pop()
-    lista.append(item)
     return lista
 
 def desfazer(lista):
     lista.pop()
     return lista
+    
+
 
 def mostrar(tarefas):
     n = 1
@@ -27,14 +27,14 @@ def mostrar(tarefas):
         n += 1
 
 
-print("Comandos: listar, desfazer, refazer, adicionar")
+print("Comandos: listar, desfazer, refazer, add")
 tarefas = []
 while True:
     comando = input('Digite um comando: ')
-    comandos_disponiveis = ['listar', 'desfazer', 'refazer', 'adicionar']
+    comandos_disponiveis = ['listar', 'desfazer', 'refazer', 'add']
     if comando not in comandos_disponiveis:
         print("Digite apenas comandos disponíveis")
-    if comando == 'adicionar':
+    if comando == 'add':
         tarefa = ''
         while True:
             tarefa = input('Digite uma TAREFA: ')
@@ -50,10 +50,15 @@ while True:
         if len(tarefas) == 0:
             print('Nada para listar.')
         else:
+            last = tarefas[-1]
             desfazer(tarefas)
             mostrar(tarefas)
-    if comando == 'desfazer':
-        ...
+    if comando == 'refazer':
+        tarefas.append(last)
+        mostrar(tarefas)
+
+
+
     
 
 
