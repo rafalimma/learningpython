@@ -8,6 +8,7 @@
 # desfazer = [] -> Refazer ['caminhar', 'fazer café']
 # refazer = todo ['fazer café']
 # refazer = todo ['fazer café', 'caminhar']
+import json
 
 def adiciona(tarefa, lista):
     lista.append(tarefa)
@@ -16,19 +17,37 @@ def adiciona(tarefa, lista):
 def desfazer(lista):
     lista.pop()
     return lista
-    
-
 
 def mostrar(tarefas):
     n = 1
+    print()
     print('TAREFAS: ')
     for i in tarefas:
         print(f'task {n}: {i}')
         n += 1
 
+def ler(tarefas, caminho_arq):
+    dados = []
+    try:
+        with open(caminho_arq, 'r', encoding='utf8') as arquivo:
+            dados = json.load(arquivo)
+    except: FileNotFoundError
+    print('Arquivo inexistente')
+    salvar(tarefas, caminho_arq)
+    return dados
+
+def salvar(tarefas, caminho_arq):
+    dados = tarefas
+    with open(caminho_arq, 'w', encoding='utf8') as arquivo:
+        dados = json.dump(tarefas, arquivo, indent=4, ensure_ascii=False)
+    return dados
+
+CAMINHO_ARQ = 'aula124-exercicio.json'
+tarefas = ler([], CAMINHO_ARQ)
 
 print("Comandos: listar, desfazer, refazer, add")
-tarefas = []
+
+
 while True:
     comando = input('Digite um comando: ')
     comandos_disponiveis = ['listar', 'desfazer', 'refazer', 'add']
@@ -56,6 +75,8 @@ while True:
     if comando == 'refazer':
         tarefas.append(last)
         mostrar(tarefas)
+
+    salvar(tarefas, CAMINHO_ARQ)
 
 
 
