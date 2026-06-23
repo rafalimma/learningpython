@@ -23,3 +23,30 @@ p1.dar_lances(200)
 🛠️ Exercício de Hoje: O Sistema de Leiloeiro
 Vamos criar uma classe que gerencia um Leilão.
 '''
+
+
+class Leilao:
+    def __init__(self, local, leiloeiro, lance_minimo):
+        self.local = local
+        self.leiloeiro = leiloeiro,
+        self.lance_minimo = lance_minimo
+        self.lances_recebidos = []
+    
+    def receber_lances(self, valor):
+        if valor >= self.lance_minimo:
+            self.lances_recebidos.append(valor)
+            print('lance adicionado')
+        else:
+            print(f"lance {valor} Muito baixo")
+
+    def resumo(self):
+        maior_lance = max(self.lances_recebidos)
+        print(f"Máximo lance recebido {maior_lance}")
+        
+
+
+
+leilao = Leilao('santa felicidade', 'kron', 100000)
+
+lance = leilao.receber_lances(290000)
+maior_lance = leilao.resumo()
